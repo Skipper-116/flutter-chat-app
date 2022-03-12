@@ -30,7 +30,7 @@ class ChatScreen extends StatelessWidget {
         title: const Text('Friendly Chat'),
       ),
       body: const Center(
-        child: Text('Friendly App'),
+        child: Text('Welcome to the chat app'),
       ),
     );
   }
