@@ -29,15 +29,44 @@ class ChatScreen extends StatefulWidget {
 
 class _ChatScreenState extends State<ChatScreen> {
   final _textController = TextEditingController();
+
+  void _handleSubmitted(String message) {
+    print(message);
+    _textController.clear();
+  }
+
+  Widget _buildTextComposer() {
+    return Container(
+      margin: const EdgeInsets.symmetric(
+        horizontal: 8.0,
+      ),
+      child: Row(children: [
+        Flexible(
+          child: TextField(
+            controller: _textController,
+            onSubmitted: _handleSubmitted,
+            decoration:
+                const InputDecoration.collapsed(hintText: 'Send a message'),
+          ),
+        ),
+        Container(
+          margin: const EdgeInsets.symmetric(horizontal: 4.0),
+          child: IconButton(
+              icon: const Icon(Icons.send),
+              color: Colors.green,
+              onPressed: () => _handleSubmitted(_textController.text)),
+        ),
+      ]),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Friendly Chat'),
       ),
-      body: const Center(
-        child: Text('Welcome to the chat app'),
-      ),
+      body: _buildTextComposer(),
     );
   }
 }
